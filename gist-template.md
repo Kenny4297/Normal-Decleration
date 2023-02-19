@@ -10,7 +10,7 @@ The RegEx under observation: <br />
 ## Vocabulary
 "string" = the physical representation of the regular expression itself <br />
 Example: 'asdofjoi208j' is the string for the regular expression <br /> <br />
-"match" = acceptable parameters. <br /> 
+"match" = acceptable parameters <br /> 
 Example: "This string matches the regular expression" means "This string is acceptable for the regular expression" <br />
 
 ## Overview
@@ -37,9 +37,9 @@ I have a feeling this doesn't make sense, and that's ok! Let's dive into each co
 
 - [Character Classes and Ranges](#character-classes-and-ranges)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+- [Quantifiers](#quantifiers)
 - [Bracket Expressions](#bracket-expressions)
 - [Grouping and Capturing](#grouping-and-capturing)
-- [Quantifiers](#quantifiers)
 - [Anchors](#anchors)
 - [OR Operator](#or-operator)
 - [Flags](#flags)
@@ -66,17 +66,17 @@ We also notice that there is a '-' inside our brackets. When this is the case, t
 ## Look-ahead and Look-behind
 ```/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/``` <br />
 
-Now that we have deciphered all the **character classes** and figured out what the (```.*```) does, let's take a look at the stuff before the classes, specifically the ```(?=...)```. This is called a **look-ahead**. In this specific code, the **look-aheads** makes sure that the string ***must contain at least one*** character class that it is inside its brackets. Let's break down our sections with the **look-aheads**. Our code should look somewhat like this:
+Now that we have deciphered all the **character classes**, let's take a look at the stuff before the classes, specifically the ```(?=...)```. This is called a **look-ahead**. In this specific code, the **look-aheads** makes sure that the string ***must contain at least one*** character class that is inside its brackets. Let's break down our sections with the **look-aheads**. Our code should look somewhat like this:
 * ```(?=(.*[0-9])``` (at least one digit from 0-9) 
 * ```(?=.*[A-Za-z0-9])``` (at least one alphanumeric characters)
 * ```(?=.*[A-Z])``` (at least one uppercase letter) 
 * ```(?=.*[a-z])``` (at least one lowercase letter) <br />
-*Note: Keen observers see that there is a larger, more menacing **look-ahead**. <br /> 
+*Note: Keen observers see that there is a larger, more menacing **look-ahead**.* <br /> 
 ```((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))```.  <br /> 
 
-*Another note: This example does not have any **look-behinds***
+*By grouping these three **look-aheads** together inside a set of parentheses, the overall regular expression enforces that all three conditions must be met in order for the string to match*
 
- By grouping these three **look-aheads** together inside a set of parentheses, the overall regular expression enforces that all three conditions must be met in order for the string to match*
+*Another note: This example does not have any **look-behinds***
 
 But what about the (```.*```)? Great question!!
 
@@ -89,7 +89,7 @@ When these asterisks are alone, they specify the number of times the following p
 
 We see a few cases of the (```.```). This acts as an "all" character. <br />
 
-When as asterisk combined with a (```.```) to make a (```.*```), they create a new **quantifier** that matches all the characters in the **character class** (the ```.``` part), plus zero or more characters of any kind (the ```*``` part), meaning there can be as many characters (or none) in the respective **character class** as the user wants. <br /> 
+When as asterisk combined with a (```.```) to make a (```.*```), they create a new **quantifier** that matches all the characters in the **character class**, plus zero or more characters of any kind, meaning there can be as many characters (or none) in the respective **character class** as the user wants. <br /> 
 
 ***But wait!*** Doesn't the prase "*there can be as many characters **(or none)** in the respective **character class** as the user wants*" mean I can just omit that character class? <br />
 
@@ -104,7 +104,7 @@ We also see another **quantifier**, the ```{8,}``` at the end. This indicates ho
 Let's see these **quantifiers** in combination with a few more components below.
 
 ## Bracket Expressions
-Even though we see brackets, no **bracket expressions** exist in this RegEx! Remember that those brackets in this RegEx, are indicating a **Character Class**!
+Even though we see brackets, no **bracket expressions** exist in this RegEx! Remember that those brackets in this RegEx are indicating a **Character Class**!
 
 ## Grouping and Capturing
 ```/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/``` <br />
@@ -112,8 +112,9 @@ Even though we see brackets, no **bracket expressions** exist in this RegEx! Rem
 
 ## Anchors
 ```/(?=(.*[0-9]))((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))^.{8,}$/``` <br />
+
 **Anchors** are sequencies that match an empty substring: <br />
-```^``` -> indicates the beginning of the string. In this example, anything to the left of the (```^```) is the string itself. This can be used to separate the string itself from the criteria of the string (```{8,}```) <br />
+```^``` -> indicates the beginning of the string. In this example, anything to the left of the (```^```) is the string itself. This can be used to separate the string itself from the criteria of the string (```{8,}```). <br />
 ```$``` -> indicates the end the string, similar to punctuation at the end of a sentence. <br />
 ```/b``` -> matches a **word boundary**, something that is not used in our code sample. <br />
 These are always used in combination with some other **quantifier** or operator.
