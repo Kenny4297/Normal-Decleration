@@ -141,8 +141,8 @@ Let's recap on what is going on here:
 * The string must contain at least one alphanumeric character (```(?=.*[A-Za-z0-9])```);
 * The string must contain at least one uppercase letter (```(?=.*[A-Z])```);
 * The string must contain a lowercase letter (```(?=.*[a-z])```);
-* The supper-massive **look-ahead** ```((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))``` groups these three **look-aheads** together inside a set of parentheses, enforcing that all three conditions must be met in order for the string to be acceptable.
-* (```^```)---> Anything to the left of this is the string itself. Anything to the right are the criteria for the string.
+* The supper-massive **look-ahead** ```((?=.*[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z]))``` groups these three **look-aheads** together inside a set of parentheses, enforcing that all three conditions must be met in order for the string to be acceptable;
+* (```^```)---> Anything to the left of this is the string itself. Anything to the right are the criteria for the string;
 * The string must contain at least 8 characters ( ```.{8,}```);
 
 Let's take a look at a valid string, and an invalid string: <br />
@@ -156,7 +156,7 @@ Let's take a look at a valid string, and an invalid string: <br />
 * Ok, It's 8 characters long, but does not contain a digit.
 
 ```4aRibHk```
-* Meets all the **character class** requirements, but is not 8 characters long
+* Meets all the **character class** requirements, but is not 8 characters long.
 
 ## Author
 About the Author: Ked is a self taught M(S)ERN stack web developer with over a year of experience. He learned about RegEx when studying Python in late 2021, and has already used it a few previous Bootcamp assignments. 
