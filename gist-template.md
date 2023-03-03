@@ -1,4 +1,4 @@
-# Normal Declarations (a RegEx tutorial)
+# Regular Expressions Tutorial
 
 RegEx, or 'regular expressions', is a specific language for describing patterns in strings. They are often used for text processing, data validation, and search & replace operations in many programming languages. A RegEx consists of a sequence of characters that define a search pattern. They are powerful tools that allow you to preform complex text manipulation tasks with relatively simple code. 
 
